@@ -10,22 +10,56 @@
   <meta name="author" content="Gustavo Moreno">
   <link rel="stylesheet" href="assets/css/main.css">
 
-  <style>
+  <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+<!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
 
+<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+<link rel="icon" href="favicon.ico">
+
+  <style type="text/css">
+  .bodyimage1{
+        background-image:url(assets/img/blur/Cabo.jpg) ;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .bodyimage2{
+            background-image:url(assets/img/blur/Monticello.jpg) ;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+      .bodyimage3{
+                background-image:url(assets/img/blur/Uvas.jpg) ;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                background-repeat: no-repeat;
+              }
+      .side-nav li.is-active{
+        font-size: 28px;
+      }
   </style>
+
+
+
+
 </head>
-<body style="background-image:url(assets/img/laura.jpg) ;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-      background-repeat: no-repeat;
-      ">
+
+<body class="bodyimage">
 
 <!-- notification for small viewports and landscape oriented smartphones -->
 <div class="device-notification">
   <a class="device-notification--logo" href="#0">
-    <img src="assets/img/laura.png" alt="Global"
+    <img src="assets/img/laura.jpg" alt="Global"
     style="margin-top:20px, width:60%">
     <p>LED LS</p>
   </a>
@@ -39,7 +73,7 @@
       <div class="l-wrapper" >
         <header class="header">
           <a class="header--logo" href="#0">
-            <img src="assets/img/logo.png" alt="LED LS"
+            <img id="myImage1" onclick="changeImage()" src="assets/img/logo.png" alt="LED LS"
             style="margin-top:30px; width:70%">
             <p></p>
           </a>
@@ -48,10 +82,10 @@
             <span></span>
           </div>
         </header>
-        <nav class="l-side-nav">
+        <nav class="l-side-nav" style="color:white">
           <ul class="side-nav" style="color:white">
-            <li class="is-active luz-hover"><span>Home</span></li>
-            <li><span>Nosotros</span></li>
+            <li class="is-active luz-hover" style="color:white"><span>Home</span></li>
+            <li style="color:white"><span style="color:white">Nosotros</span></li>
             <li><span>Socios</span></li>
             <li><span>Proyectos</span></li>
             <li><span>Clientes</span></li>
@@ -65,7 +99,7 @@
               <div class="intro--banner">
                 <h1>LED:<br>Iluminación<br>Eficiente</h1>
                  <div style="margin-left=500px">
-                   <img src="assets/img/introduction-visual.png" alt="Monticello" style="margin-left:500px"  >
+                   <img src="assets/img/introduction-visual.png" alt="Monticello" style="margin-left:500px" id="myImage"  >
                  </div>
                 <button class="cta">Contáctenos
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
@@ -331,6 +365,35 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+
+<script>
+
+$(document).ready(function(){
+  var classCycle=['cabo_chile.png','monticello_casino.png','uvas_medellin.png'];
+  var classCycle2=['bodyimage1','bodyimage2','bodyimage3'];
+
+  randomNumber = Math.floor(Math.random() * classCycle.length);
+    var image = document.getElementById('myImage');
+    image.src = "assets/img/inicio/"+classCycle[randomNumber];
+
+    var classToAdd = classCycle2[randomNumber];
+    $('body').addClass(classToAdd);
+});
+
+function changeImage() {
+
+  console.log(randomNumber);
+  var image = document.getElementById('myImage');
+
+  if (image.src.match("bulbon")) {
+      image.src = "pic_bulboff.png";
+  } else {
+      image.src = "assets/img/monticello_casino.png";
+  }
+}
+
+</script>
+
 <script src="assets/js/functions-min.js"></script>
 </body>
 </html>
