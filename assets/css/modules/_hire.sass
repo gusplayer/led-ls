@@ -1,8 +1,34 @@
+.swiper5
+  overflow: hidden
+  display: block !important
+  height: 520px !important
+  background: rgba(255, 255, 255, 0.6)
+
+  .swiper-slide
+    height: 145px !important
+
+.swiper-slide img[alt=client]
+  height: 145px
+@media (max-height: 700px)
+  .swiper5
+    height: 400px !important
+
+    .swiper-slide
+      height: 120px !important
+
+  .swiper-slide img[alt=client]
+    height: 120px
+
+@media (min-width: 767px)
+  .hire
+    .grid
+      img
+        height: 125px
+
 .hire
   position: relative
   display: flex
-  width: 700px
-  max-width: 75%
+  padding-left: 280px
   height: 100%
   flex-direction: column
   justify-content: center
@@ -10,11 +36,34 @@
 
   @media (max-width: 1180px)
     max-width: 100%
+    padding-left: 0px
 
   h2
-    margin: 0 0 20px 0
     font-size: 30px
     text-align: center
+
+  .scroller
+    overflow-y: scroll
+    height: 345px;
+    background-color: rgba(255,255,255,1)
+    border: 10px solid rgba(255,255,255,1)
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+
+    .grid
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+      justify-content: space-between
+
+      // padding: 10px
+
+      img
+        transition: all .4s ease-in-out
+
+
 
 .work-request
   display: flex
@@ -124,6 +173,11 @@
       font-size: 14px
 
 @media (max-width: 767px)
+  
+  .hire
+    .grid
+      img
+        height: 100px
 
   .work-request
 
@@ -165,3 +219,22 @@
       .information-email
         height: 40px
         font-size: 24px
+
+@media (max-width: 600px)
+  .hire
+    padding-top: 50px
+    .grid
+      img
+        height: 55px !important
+
+@media (max-width: 400px)
+  .hire
+    h2
+      display: none
+  .swiper5
+    overflow: hidden
+    display: block !important
+    height: 320px !important
+    background: rgba(255, 255, 255, 0.6)
+  .swiper5 .swiper-slide
+    height: 100px !important

@@ -1,8 +1,7 @@
 .intro
   position: relative
   display: flex
-  width: 900px
-  max-width: 75%
+  padding-left:  250px; 
   height: 100%
   flex-direction: column
   justify-content: center
@@ -10,10 +9,19 @@
 
   @media (max-width: 1180px)
     max-width: 100%
+    padding-left: 0px;
 
   &--banner
     position: relative
     height: 475px
+    margin-top: 60px;
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: flex-start
+
+    img
+      width: 900px
 
     &::before
       content: ""
@@ -21,8 +29,8 @@
       bottom: 20px
       left: -15px
       right: 0
-      height: 2px
-      background-color: #e05530
+      height: 1px
+      background-color: rgba(246,246,246,0.43)
 
     &::after
       content: ""
@@ -31,19 +39,32 @@
       left: 0
       width: 30px
       height: 4px
-      background-color: $highlight
+      background-color: white
+      box-shadow: 0px 0px 10px 0px white, 0px 0px 20px 3px white
 
-    h1
+    p
+      background-color: rgba(36, 36, 36, 0.85)
+      padding: 10px
       position: relative
-      font-size: 68px
-      font-weight: 900
+      font-size: 30px
+      margin-left: 30px
+      font-weight: 100
       line-height: 1
       z-index: 1
+      display: none
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3)
+
+      strong
+        font-size: 29px
+
+    .selected
+      display: block
 
     button
       position: relative
       padding: 5px 17px 5px 12px
       font-weight: 700
+      margin-left: 30px
       text-transform: uppercase
       background-color: #e05530
       border: none
@@ -73,8 +94,25 @@
 
     img
       position: absolute
+      left: -15px
       bottom: 21px
       right: -12px
+
+  &--banner.o1
+
+    &::after
+      left: 0px
+
+  &--banner.o2
+
+    &::after
+      left: 330px
+
+  &--banner.o3
+
+    &::after
+      left: 650px
+
 
   &--options
     display: flex
@@ -84,13 +122,17 @@
     list-style: none
 
     & > a
+      cursor: pointer
       max-width: 250px
       text-decoration: none
-      color: $muted-gray
+      color: rgba(255, 255, 255, 0.3)
       transition: color .2s ease-in-out
 
       &:hover
         color: $white
+
+    a.selected
+      color: $white
 
     h3
       font-size: 16px
@@ -104,13 +146,14 @@
   .intro
 
     &--banner
+      margin-top: 0px;
       height: 380px
 
       h1
         font-size: 55px
 
       img
-        width: 430px
+        width: 650px
 
     &--options
 
@@ -127,11 +170,14 @@
     &--banner
       height: 305px
 
+      p
+        background-color: transparent
+
       h1
         font-size: 44px
 
       img
-        width: 330px
+        width: 0px
 
     &--options
       display: block
@@ -173,3 +219,9 @@
 
     &--options
       display: none
+
+@media (max-height: 700px)
+  .intro
+
+    &--banner
+      margin-top: 0px

@@ -1,0 +1,96 @@
+.tools-mobile .swiper-container
+	max-height: 60%
+.changeTool
+	border-style: none
+	background-color: transparent
+	padding: 10px
+	margin: 5px
+	outline: none
+	border: 1px solid #FFF
+
+.changeTool.active
+	background-color: rgba(255, 255, 255, 0.5)
+	
+.changeTool:focus, .changeTool:active
+	background-color: rgba(255, 255, 255, 0.5)
+
+.swiper3
+	overflow: visible
+	display: block !important
+
+.swiper8
+	overflow: visible
+	display: block !important
+
+.tool1
+	background-position: 50%
+	background-repeat: no-repeat
+	background-size: contain
+
+.tool2
+	background-position: 50%
+	background-repeat: no-repeat
+	background-size: contain
+
+.tools
+	width: calc(100% - 160px)
+	height: 100%
+	margin-left: 180px
+	display: flex
+	justify-content: space-around
+	align-items: center
+
+	&-item
+		width: 400px
+		height: 650px
+		display: flex
+		flex-direction: column
+		justify-content: flex-end
+
+		&-image
+			display: flex
+			justify-content: center
+			align-items: center
+			width: 100%
+			height: 400px
+
+		&-text
+			width: 300px
+			height: 150px
+			margin: 0px auto 
+			text-align: center
+
+.tools-mobile
+	width: 100%
+	height: 100%
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
+
+
+
+@media (max-width: 1180px)
+	.tools
+		margin-left: 0px
+		width: 100%
+
+@media (max-width: 900px)
+	.tools
+		display: none
+
+
+@media (max-height: 700px)
+	.tools-item
+		display: flex
+		flex-direction: column
+		justify-content: flex-end
+		padding-bottom: 100px
+
+		&-image
+			height: 330px
+
+.hidden
+	opacity: 0
+	visible: hidden
+	height: 0px !important

@@ -1,12 +1,39 @@
+.redes-sociales
+  display: flex
+  justify-content: space-around
+  padding-top: 6px
+  align-items: center
+  background-color: rgba(255, 255, 255, 1)
+  width: 40%
+  border-radius: 10px
+  margin-bottom: 15px
+
+  a
+    img
+      height: 25px
+      margin: 2px 5px
+
+  a:first-child
+    img
+      height: 30px
+
+.banderaSelected
+  transform: scale(1.1)
+  filter: brightness(1.2)
+  margin: 0px 5px
+  box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.42)
+  transition: all 0.4s
 // position fixed in order to escape the 1440px wrapper
+
 .contact
+  display: none
   position: fixed
   top: 0
   left: 0
   width: 100%
   height: 100%
   background:
-    image: url("../img/contact-visual.png")
+    image: url("../img/mapa.jpg")
     position: center
     size: cover
     repeat: no-repeat
@@ -18,8 +45,11 @@
     max-width: 75%
     height: 100%
     align-items: center
-    justify-content: flex-end
+    justify-content: center
     margin: 0 auto
+
+    .modal
+      width: 270px
 
     @media (max-width: 1180px)
       max-width: 90%
@@ -29,9 +59,17 @@
 
     .modal
       padding: 45px 45px
+      position: absolute
+      right: 0
       text-align: center
-      background-color: $black
-      box-shadow: 0 0 30px 0 rgba(0,0,0,.75)
+      background-color: rgba(0, 0, 0, 0.5)
+      box-shadow: 0 0 30px 0 rgba(107, 107, 107, 0.75)
+      display: flex
+      flex-direction: column
+      align-items: center
+
+      @media (max-width: 1180px)
+        position: initial
 
       &--information
 
@@ -55,6 +93,11 @@
           width: 130px
           margin: 0 auto 25px auto
 
+        & > img
+          width: 50px
+          height: 33px
+          cursor: pointer
+
         li:nth-child(1)
           background-color: #1769ff
 
@@ -73,3 +116,42 @@
           text-decoration: none
           color: $white
           font-weight: 700
+
+.selected
+  display: block
+
+.contact1
+    background:
+      image: url("../img/colombiamapa.jpg")
+
+.contact2
+    background:
+      image: url("../img/usamapa.jpg")
+
+.contact3
+    background:
+      image: url("../img/argentinamapa.jpg")
+
+.contact4
+    background:
+      image: url("../img/chilemapa.jpg")
+
+.contact5
+    background:
+      image: url("../img/usamapa.jpg")
+
+.contact6
+    background:
+      image: url("../img/perumapa.jpg")
+
+.contact7
+    background:
+      image: url("../img/colombiamapa.jpg")
+@media (max-width: 600px)
+  .contact--lockup .modal
+    padding: 25px
+
+.copyright
+    margin-top: 25px
+    text-align: center
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8)

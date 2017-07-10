@@ -1,22 +1,31 @@
 .side-nav
   position: relative
   display: flex
-  width: 100px
+  width: 180px
   height: 70%
+  top: 43px
   max-height: 750px
   flex-direction: column
-  justify-content: space-around
+  justify-content: space-between
   margin: 0
   padding: 0
   list-style-position: inside
+  left: 2px;
   z-index: 10
 
-  & > li
+  div > li:first-child span
+    font-size: 18px
+    font-weight: 400
+    opacity: 0.8
+
+    
+  & li
     position: relative
     top: -5px
     color: $white
     font-size: 6px
     cursor: pointer
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
 
     span
       position: relative
@@ -25,41 +34,57 @@
       color: $white
       font-size: 14px
       font-weight: 300
-      opacity: 0
-      visibility: hidden
+      opacity: 0.5
 
-    &::before
+    /*&::before
       position: absolute
       top: 3px
       left: 10px
-      color: #555
-      font-size: 14px
-      font-weight: 300
+      color: #cbcbcb
+      font-size: 13px
+      font-weight: 300*/ /* cambio */
 
-  li:nth-child(1)::before
-    content: "01"
+      /* Eliminado numeracion span */
 
-  li:nth-child(2)::before
-    content: "02"
-
-  li:nth-child(3)::before
-    content: "03"
-
-  li:nth-child(4)::before
-    content: "04"
-
-  li:nth-child(5)::before
-    content: "05"
-
+  & > li span
+    font-size: 18px
+    font-weight: 400
+    opacity: 0.8
+    
   li.is-active
     color: $highlight
     transition: color .4s ease-in-out
+    list-style-image: url('../img/dot4.png')
+    left: -7px
 
     span
       opacity: 1
       visibility: visible
       transition: opacity .4s ease-in-out
+      font-size: 20px
+      top: 0px
+      font-weight: 500
+      transition: all .2s ease-in-out
+
+    .sub-nav
+      opacity: 1
+      visibility: visible
+
+      li
+        color: #FFF
+        opacity: 0.6
+
+    /*&::before
+      font-size: 17px
+      left: -43px
+      color: $white*/ /* cambio */
+@media (max-height: 700px)
+  .l-side-nav
+    align-items: flex-end
+    bottom: 25px
 
     &::before
-      left: -33px
-      color: $white
+      bottom: -35%
+      top: initial;
+  .side-nav
+    top: 0px

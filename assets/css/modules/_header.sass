@@ -1,9 +1,10 @@
 .header
   position: absolute
-  top: 0
+  top: 50px
   left: 0
   display: flex
   width: 100%
+  padding-right: 40px
   height: 70px
   align-items: center
   justify-content: space-between
@@ -22,13 +23,16 @@
       text-transform: uppercase
 
   &--nav-toggle
-    display: flex
+    display: none
     width: 50px
     height: 50px
     flex-direction: column
     align-items: center
     justify-content: center
     cursor: pointer
+
+    @media (max-width: 1180px)
+      display: flex
 
     span,
     &::before,
@@ -48,21 +52,30 @@
       width: 23px
 
   &--cta
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    padding: 0 20px
+    /* Cambio */
+    padding: 3px 20px
+
     line-height: 30px
     text-decoration: none
     color: $white
-    font-weight: 700
+    /* font-weight: 700 */ /* cambio */
+    font-size: 17px
     text-transform: uppercase
-    background-color: $highlight
+    /*background-color: $highlight*/
+    background-color: #e15531
     border: none
     opacity: 0
     visibility: hidden
+    display: flex
+    justify-content: center
+    align-items: center
     transition: opacity .4s ease-in-out, visibility 0s .4s
+
+    img
+      width: 20px
+      height: 20px
+      margin-left: 3px
+      fill: #FFF
 
     &:focus
       outline: none
@@ -74,3 +87,11 @@
 
     @media (max-width: 767px)
       display: none
+
+  @media (max-width: 1180px)
+    width: 100%
+    max-width: 100%
+
+@media (max-width: 1180px)
+    .header
+      top: 20px

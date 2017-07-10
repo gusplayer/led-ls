@@ -6,7 +6,6 @@ $( document ).ready(function() {
   var canScroll = true,
       scrollController = null;
   $(this).on('mousewheel DOMMouseScroll', function(e){
-
     if (!($('.outer-nav').hasClass('is-vis'))) {
 
       e.preventDefault();
@@ -34,31 +33,93 @@ $( document ).ready(function() {
 
   });
 
-  $('.side-nav li, .outer-nav li').click(function(){
-
+  $('.side-nav, .outer-nav').find('li').click(function(){
     if (!($(this).hasClass('is-active'))) {
 
+
       var $this = $(this),
-          curActive = $this.parent().find('.is-active'),
-          curPos = $this.parent().children().index(curActive),
-          nextPos = $this.parent().children().index($this),
-          lastItem = $(this).parent().children().length - 1;
+          curActive = $('.side-nav').find('li.is-active'),
+          curPos = $('.side-nav').find('li').index(curActive),
+          nextPos = $('.side-nav').find('li').index($this),
+          lastItem = $('.side-nav').find('li').length - 1;
+
+      var whoParent = $this.parent();
+          whoParent = whoParent[0].className;
+      if(whoParent == 'outer-nav is-vis'){
+          nextPos = $('.outer-nav').find('li').index($this)
+      }
 
       updateNavs(nextPos);
       updateContent(curPos, nextPos, lastItem);
 
     }
-
   });
 
-  $('.cta').click(function(){
+  //callAction para ir a contacto
+  $('.cta').bind("click touchstart", function(){
 
-    var curActive = $('.side-nav').find('.is-active'),
-        curPos = $('.side-nav').children().index(curActive),
-        lastItem = $('.side-nav').children().length - 1,
+    var curActive = $('.side-nav').find('li.is-active'),
+        curPos = $('.side-nav').find('li').index(curActive),
+        lastItem = $('.side-nav').find('li').length - 1;
         nextPos = lastItem;
 
     updateNavs(lastItem);
+    updateContent(curPos, nextPos, lastItem);
+
+  });
+
+  //callAction de proyectos para funcional
+  $('.proyecto-funcional').click(function(){
+
+    var curActive = $('.side-nav').find('li.is-active'),
+        curPos = $('.side-nav').find('li').index(curActive),
+        lastItem = $('.side-nav').find('li').length - 1
+        nextPos = $('.side-nav').find('li').length - 4;
+        console.log(nextPos)
+
+    updateNavs(nextPos);
+    updateContent(curPos, nextPos, lastItem);
+
+  });
+
+  //callAction de proyectos para arquitectonico
+  $('.proyecto-arquitectonica').click(function(){
+
+    var curActive = $('.side-nav').find('li.is-active'),
+        curPos = $('.side-nav').find('li').index(curActive),
+        lastItem = $('.side-nav').find('li').length - 1
+        nextPos = $('.side-nav').find('li').length - 3;
+        console.log(nextPos)
+
+    updateNavs(nextPos);
+    updateContent(curPos, nextPos, lastItem);
+
+  });
+
+  //callAction de aliados para cree
+  $('.aliado-cree').click(function(){
+
+    var curActive = $('.side-nav').find('li.is-active'),
+        curPos = $('.side-nav').find('li').index(curActive),
+        lastItem = $('.side-nav').find('li').length - 1
+        nextPos = $('.side-nav').find('li').length - 7;
+        console.log(nextPos)
+
+    updateNavs(nextPos);
+    updateContent(curPos, nextPos, lastItem);
+
+  });
+
+  //callAction de aliados para colorkinetics
+  $('.aliado-colorkinetics').click(function(){
+
+    var curActive = $('.side-nav').find('li.is-active'),
+        curPos = $('.side-nav').find('li').index(curActive),
+        lastItem = $('.side-nav').find('li').length - 1
+        nextPos = $('.side-nav').find('li').length - 6;
+        console.log(nextPos)
+
+    updateNavs(nextPos);
     updateContent(curPos, nextPos, lastItem);
 
   });
@@ -74,7 +135,6 @@ $( document ).ready(function() {
   });
 
   $(document).keyup(function(e){
-
     if (!($('.outer-nav').hasClass('is-vis'))) {
       e.preventDefault();
       updateHelper(e);
@@ -86,8 +146,8 @@ $( document ).ready(function() {
   function updateHelper(param) {
 
     var curActive = $('.side-nav').find('.is-active'),
-        curPos = $('.side-nav').children().index(curActive),
-        lastItem = $('.side-nav').children().length - 1,
+        curPos = $('.side-nav').find('li').index(curActive),
+        lastItem = $('.side-nav').find('li').length - 1,
         nextPos = 0;
 
     if (param.type === "swipeup" || param.keyCode === 40 || param > 0) {
@@ -119,14 +179,17 @@ $( document ).ready(function() {
   // sync side and outer navigations
   function updateNavs(nextPos) {
 
-    $('.side-nav, .outer-nav').children().removeClass('is-active');
-    $('.side-nav').children().eq(nextPos).addClass('is-active');
+    $('.side-nav, .outer-nav').find('li').removeClass('is-active');
+    $('.side-nav').find('li').eq(nextPos).addClass('is-active');
     $('.outer-nav').children().eq(nextPos).addClass('is-active');
 
   }
 
   // update main content area
   function updateContent(curPos, nextPos, lastItem) {
+    setTimeout(function(){
+      player.stopVideo();
+    }, 1000);
 
     $('.main-content').children().removeClass('section--is-active');
     $('.main-content').children().eq(nextPos).addClass('section--is-active');
@@ -153,7 +216,7 @@ $( document ).ready(function() {
 
   function outerNav() {
 
-    $('.header--nav-toggle').click(function(){
+    $('.header--nav-toggle').bind("click touchstart", function(){
 
       $('.perspective').addClass('perspective--modalview');
       setTimeout(function(){
@@ -278,3 +341,162 @@ $( document ).ready(function() {
   transitionLabels();
 
 });
+
+// Informacion segun el pais en la pestaña contacto
+
+//cambiar el contenido
+var changeContact = function (next, pais) {
+  var selected = $('.contacts').children()
+  selected.removeClass('selected');
+  var next = $('.contacts').find(next)
+  next.addClass('selected');
+  $(next).find(pais).addClass('banderaSelected');
+
+}
+
+//segun la bandera que seleccione
+$('.modal--options').find('img').click(function(){
+
+  var pais = $(this)[0].className
+  switch(pais) {
+      case 'colombia':
+          changeContact('.contact1', '.colombia')
+          break;
+      case 'usa':
+          changeContact('.contact2', '.usa')
+          break;
+      case 'argentina':
+          changeContact('.contact3', '.argentina')
+          break;
+      case 'brasil':
+          changeContact('.contact4', '.brasil')
+          break;
+      case 'chile':
+          changeContact('.contact5', '.chile')
+          break;
+      case 'peru':
+          changeContact('.contact6', '.peru')
+          break;
+      case 'bolivia':
+          changeContact('.contact7', '.bolivia')
+          break;
+  }
+})
+
+
+var maxmediaquerywork = window.matchMedia("(max-width: 767px)");
+
+
+//abrir el modal de proyectos
+function openModal(type ,n, este) {
+
+  var folder = `./assets/img/proyectos/${type}/${n}/`
+  $('.modal--content--mainImage').find('img').attr('src', `./assets/img/proyectos/${type}/${n}/0.jpg`);
+  for (var i = 0; i <= 2; i++) {
+
+    $('.modal--content--images-list').find(`.${i}`).find('img').attr('src', `${folder}${i}.jpg`);
+    $('.swiper11').find(`.swiper-slide.${i}`).find('img').attr('src', `${folder}${i}.jpg`);
+  }
+  var description = ''
+  var title = $(este).find('.slider--item-title')[0].innerText
+  if($('.slider--item-description').length != 0){
+    description = $(este).find('.slider--item-description')[0].innerText
+  }
+  var sector = $(este).find('.slider--item-sector')[0].innerText
+  var ubicacion = $(este).find('.slider--item-ubicacion')[0].innerText
+  $('.content-text').find('.title').text(title)
+  $('.content-text').find('.description').text(description)
+  $('.content-text').find('.sector').text(sector)
+  $('.content-text').find('.ubicacion').text(ubicacion)
+
+  if(maxmediaquerywork.matches){
+    $('.modal--work-mobile').addClass('openModal')
+  }else{
+    $('.modal--work').addClass('openModal')
+  }
+
+}
+
+
+//modifica el contenido de mainImage
+function changeMainImage(n) {
+  var newSrc = $(`.modal--content--images-list .${n} img`).attr('src')
+  $('.modal--content--mainImage img').attr('src', newSrc);
+}
+
+// cerrar el modal de proyectos
+$('.closeModal--content').click(function(){
+  $('.modal--work-mobile').removeClass('openModal');
+  $('.modal--work').removeClass('openModal');
+})
+
+
+//remove image with 404
+function removeImage(err){
+  $(err).remove()
+}
+
+//change the view of tools
+function changeTool(e){
+    $('.changeTool.active').removeClass('active');
+  if(e == 1){
+    $('.swiper10').addClass('hidden');
+    $(`.swiper9`).removeClass('hidden');
+  }else{
+    $(`.swiper9`).addClass('hidden');
+    $(`.swiper10`).removeClass('hidden');
+  }
+}
+
+var mediaquery = window.matchMedia("(max-width: 700px)");
+  $('.ref').click(function(){
+      $('.modal--team').css("display", "flex");
+      var selectedTeam = $(this).prop('id');
+      console.log(selectedTeam)
+      switch (selectedTeam) {
+        case 'refDiseno':
+          if (mediaquery.matches) {
+              $('.modal--team-image').attr('src','./assets/img/disenoM.png');
+          }else{
+              $('.modal--team-image').attr('src','./assets/img/disenoCont.png');
+              $('.modal--team-imageOption').attr('src','./assets/img/disenoOn.png');
+          }
+        break;
+        case 'refCreativo':
+          if(mediaquery.matches) {
+            $('.modal--team-image').attr('src','./assets/img/creativoM.png');
+          }else{
+            $('.modal--team-image').attr('src','./assets/img/creativoContent.png');
+            $('.modal--team-imageOption').attr('src','./assets/img/creativoOn.png');
+          }
+        break;
+        case 'refTecnico':
+          if(mediaquery.matches) {
+            $('.modal--team-image').attr('src','./assets/img/tecnicom.png');
+          }else{
+            $('.modal--team-image').attr('src','./assets/img/tecnicoCont.png');
+            $('.modal--team-imageOption').attr('src','./assets/img/tecnicoOn.png');
+          }
+        break;
+        case 'refVentas':
+          if(mediaquery.matches) {
+            $('.modal--team-image').attr('src','./assets/img/ventasM.png');
+          }else{
+            $('.modal--team-image').attr('src','./assets/img/ventasContent.png');
+            $('.modal--team-imageOption').attr('src','./assets/img/ventasOn.png');
+          }
+        break;
+        case 'refLogistica':
+          if(mediaquery.matches) {
+            $('.modal--team-image').attr('src','./assets/img/logisticaM.png');
+          }else{
+            $('.modal--team-image').attr('src','./assets/img/logisticaCont.png');
+            $('.modal--team-imageOption').attr('src','./assets/img/logisticaOn.png');
+          }
+        break;
+      }
+    });
+
+function closeModalTeam(){
+  $('.modal--team').css("display", "none");
+}
